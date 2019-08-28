@@ -67,8 +67,8 @@ if __name__ == "__main__":
     
        
     Samantha = Visitor("Samantha Smith", 12, "12/4/2019", "12:45", "this is the umpteeth try", "Maxwell",1)
-    
     Samantha.save()
+    
     Mike = Visitor("Mike Smith", 32, "12/04/2018", "12:47", "Samantha's husband", "Maxwell")
     Mike.save()
 
@@ -76,10 +76,9 @@ if __name__ == "__main__":
     Samantha.comments = 'hello nurse'
     Samantha.save()
 
-    # Mike.load(2)
-    # Mike.comments = "had a great time" 
-
-    # print(Mike.save())
+    Mike.load(2)
+    Mike.comments = "had a great time" 
+    Mike.save()
     
     
     

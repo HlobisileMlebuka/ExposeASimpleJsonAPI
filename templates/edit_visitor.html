@@ -1,0 +1,11 @@
+<form action="{{ url_for('edit_visitor,visitor_id = visitor.id)}}" method="post">
+    <div class="form-group">
+        <label for="full_name">full_name:</label>
+        <input type="text" class="form-control" name="" value="{{visitor.full_name}}">
+        <button type="submit"> SAVE</button>
+        <a href='{{url_for('show_visitor')}}'>
+            <button>Cancel</button>
+        </a>
+    </div>
+ </form>
+ 

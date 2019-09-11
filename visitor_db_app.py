@@ -50,20 +50,20 @@ def delete_visitor(visitor_id):
     session.commit()
     return redirect(url_for('show_visitors', visitor_id=visitor_id))
   else:
-    return render_template('delete_visitor.html', book = book_to_delete)
+    return render_template('delete_visitor.html', visitor = visitor_to_delete)
 
 
 if __name__ == '__main__':
   
   
-  Mike = Visitor(full_name='Mike Pence', age=25, date_of_visit='2019/8/29', time_of_visit='12:30', comments='Lorem ipsum dolor sit amet, consectetur adipiscing elit', visitor_assistant='Sean')
+  # Mike = Visitor(full_name='Mike Pence', age=25, date_of_visit='2019/8/29', time_of_visit='12:30', comments='Lorem ipsum dolor sit amet, consectetur adipiscing elit', visitor_assistant='Sean')
   
-  #add Visitor to the sesion
-  session.add(Mike)
+  # #add Visitor to the sesion
+  # session.add(Mike)
   
-  Alice = Visitor(full_name='Alice Pence', age=19, date_of_visit='2019/9/5', time_of_visit='12:49', comments='Lorem ipsum dolor sit amet, consectetur adipiscing elit', visitor_assistant='Sean')
-  session.add(Alice)
-  session.commit()
+  # Alice = Visitor(full_name='Alice Pence', age=19, date_of_visit='2019/9/5', time_of_visit='12:49', comments='Lorem ipsum dolor sit amet, consectetur adipiscing elit', visitor_assistant='Sean')
+  # session.add(Alice)
+  # session.commit()
 
   
   app.run(debug=True)

@@ -23,48 +23,14 @@ class Visitor(Base):
     @property
     def serialize(self):
         return {
-            'id':self.id,
-            "full_name":self.full_name,
-            'date_of_visit':self.date_of_visit,
-            'time_of_visit':self.time_of_visit,
-            'comments':self.comments,
-            'visitor_assistant':self.visitor_assistant,
+            self.id = 'id',
+            self.full_name="full_name",
+            self.date_of_visit='date_of_visit'
+            self.time_of_visit='time_of_visit'
+            self.comments='comments'
+            self.visitor_assistant='visitor_assistant'
         }
 
 engine = create_engine('sqlite:///visitors.db')
 Base.metadata.create_all(engine)
 
-# # class Visitor(Base):
-
-# #     __tablename__ = 'visitor'
-    
-# #     id = db.Column(db.Integer, primary_key=True)
-# #     full_name = db.Column(db.String(250), nullable=False)
-# #     age = db.Column(db.Integer, nullable=False)
-# #     date_of_visit = db.Column(db.String, nullable=False)
-# #     time_of_visit = db.Column(db.String(250), nullable=False)     
-# #     comments = db.Column(db.String(500), nullable=False)
-# #     visitor_assistant = db.Column(db.String(250), nullable=False)
-
-# from flask import Flask
-# from flask_sqlalchemy import SQLAlchemy
-# from flask_migrate import Migrate
-
-# app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///visitors.db'
-
-# db = SQLAlchemy(app)
-# migrate = Migrate(app, db)
-
-
-# class Visitor(db.Model):
-    
-#     id = db.Column(db.Integer, primary_key=True)
-#     full_name = db.Column(db.String(250), nullable=False)
-#     age = db.Column(db.Integer, nullable=False)
-#     date_of_visit = db.Column(db.String, nullable=False)
-#     time_of_visit = db.Column(db.String(250), nullable=False)     
-#     comments = db.Column(db.String(500), nullable=False)
-#     visitor_assistant = db.Column(db.String(250), nullable=False)
-
-    

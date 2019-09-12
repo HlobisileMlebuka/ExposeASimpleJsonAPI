@@ -37,6 +37,8 @@ def edit_visitor(visitor_id):
   if request.method == 'POST':
     if request.form['full_name']:
       visitor_to_edit.full_name = request.form['full_name']
+      session.add(visitor_to_edit.full_name)
+      session.commit()
       return redirect(url_for('show_visitors'))
   else:
     return render_template('edit_visitor.html', visitor=visitor_to_edit)

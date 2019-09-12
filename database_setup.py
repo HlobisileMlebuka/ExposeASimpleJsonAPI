@@ -20,16 +20,16 @@ class Visitor(Base):
     comments = Column(String(500), nullable=False)
     visitor_assistant = Column(String(250), nullable=False)
 
-    @property
-    def serialize(self):
-        return {
-            self.id = 'id',
-            self.full_name="full_name",
-            self.date_of_visit='date_of_visit'
-            self.time_of_visit='time_of_visit'
-            self.comments='comments'
-            self.visitor_assistant='visitor_assistant'
-        }
+    # @property
+    # def serialize(self):
+    #     return {
+    #         'id' = self.id
+    #         "full_name" = self.full_name
+    #         'date_of_visit' = self.date_of_visit
+    #         'time_of_visit' = self.time_of_visit
+    #         'comments' = self.comments
+    #         'visitor_assistant'= self.visitor_assistant
+    #     }
 
 engine = create_engine('sqlite:///visitors.db')
 Base.metadata.create_all(engine)

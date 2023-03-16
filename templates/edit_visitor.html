@@ -1,28 +1,65 @@
-<form action="{{ url_for('edit_visitor',visitor_id= visitor.id)}}" method="post">
-    <div class="form-group">
-        
-        <label for="full_name">full_name:</label>
-        <input type="text" class="form-control" name="full_name" value="{{visitor.full_name}}">
-        
-        <label for="age">age:</label>
-        <input type="integer" class="form-control" name="age" value="{{visitor.age}}">
+<form
+  action="{{ url_for('edit_visitor',visitor_id= visitor.id)}}"
+  method="post"
+>
+  <div class="form-group">
+    <label for="full_name">full_name:</label>
+    <input
+      type="text"
+      class="form-control"
+      name="full_name"
+      value="{{visitor.full_name}}"
+    />
 
-        <label for="date_of_visit">date_of_visit:</label>
-        <input type="text" class="form-control" name="date_of_visit" value="{{visitor.date_of_visit}}">
-        
-        <label for="time_of_visit">time_of_visit:</label>
-        <input type="text" class="form-control" name="time_of_visit" value="{{visitor.time_of_visit}}">
-        
-        <label for="comments">comments:</label>
-        <input type="text" class="form-control" name="comments" value="{{visitor.comments}}">
-        
-        <label for="visitor_assistant">visitor_assistant:</label>
-        <input type="text" class="form-control" name="visitor_assistant" value="{{visitor.visitor_assistant}}">
-        
-        <button type="submit">SAVE</button>
-        <a href="{{url_for('show_visitors')}}">
-        
-        </a>
-    </div>
- </form>
- 
+    <label for="age">age:</label>
+    <input
+      type="integer"
+      class="form-control"
+      name="age"
+      value="{{visitor.age}}"
+    />
+
+    <label for="date_of_visit">date_of_visit:</label>
+    <input
+      type="text"
+      class="form-control"
+      name="date_of_visit"
+      value="{{visitor.date_of_visit}}"
+    />
+
+    <label for="time_of_visit">time_of_visit:</label>
+    <input
+      type="text"
+      class="form-control"
+      name="time_of_visit"
+      value="{{visitor.time_of_visit}}"
+    />
+
+    <label for="comments">comments:</label>
+    <input
+      type="text"
+      class="form-control"
+      name="comments"
+      value="{{visitor.comments}}"
+    />
+
+    <label for="visitor_assistant">visitor_assistant:</label>
+    <input
+      type="text"
+      class="form-control"
+      name="visitor_assistant"
+      value="{{visitor.visitor_assistant}}"
+    />
+
+    <label for="visitor_id">id</label>
+    <input
+      type="text"
+      class="form-control"
+      name="visitor_id"
+      value="{{visitor.visitor_id}}"
+    />
+
+    <button type="submit">SAVE</button>
+    <a href="{{url_for('show_visitors')}}"> </a>
+  </div>
+</form>

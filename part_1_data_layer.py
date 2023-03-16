@@ -1,8 +1,11 @@
 import json
+import glob
 import os, re
 import itertools
+import sys
 
-MY_PATH = "/home/klobie/"
+MY_PATH = os.environ.get("VISITOR_APP_PATH")
+visitor_files = glob.glob(f"{MY_PATH}/*.json")
 
 
 class Visitor:
@@ -28,20 +31,14 @@ class Visitor:
     def generate_id(self):
 
         """generate an id, relative to the last recorded id"""
-
-        # search through a directory for all visitor objects
         visitor_id_list = []
         files_in_directory = os.listdir(MY_PATH)
-        # find list of id numbers in files_in_directory
         for file_name in files_in_directory:
             if re.findall(r"((?<=visitor_)\d(?=\.json))", file_name):
                 pattern = re.findall(r"((?<=visitor_)\d(?=\.json))", file_name)
                 visitor_id_list.append(pattern)
-
-        visitor_id = list(  # flatten visitor_id_list
-            itertools.chain.from_iterable(visitor_id_list)
-        )
-        # get the maximum number and add increment it
+        # flatten visitor_id_list
+        visitor_id = list(itertools.chain.from_iterable(visitor_id_list))
         last_recorded_id = max(visitor_id, key=lambda x: int(x))
         id = int(last_recorded_id) + 1
 
@@ -49,7 +46,7 @@ class Visitor:
 
     def save(self):
 
-        """"generates an id for the visitor, if there is none, then dumps the visitor as a json file"""
+        """ "generates an id for the visitor, if there is none, then dumps the visitor as a json file"""
 
         self.id = self.id or self.generate_id()
 
@@ -66,43 +63,35 @@ class Visitor:
         with open(f"{MY_PATH}/visitor_{self.id}.json", "w+") as dumped_data_file:
             json.dump(visitor_dictionary, dumped_data_file)
 
+    def delete(self, id):
+        try:
+            visitor_file = f"{MY_PATH}/visitor_{id}.json"
+            os.remove(visitor_file)
+            print(f"File {visitor_file} deleted successfully.")
+        except FileNotFoundError:
+            print(f"File {visitor_file} not found or already deleted")
 
-def load(id):
-    """loads file using id and return an instance of visitor"""
-    # search for json file in all directories in \"visitor_{some_number}.json\" format.
-    visitor_file = f"{MY_PATH}/visitor_{id}.json"
-    # open visitor file and load as a python object
+
+def delete_all():
+    for file in visitor_files:
+        os.remove(file)
+
+
+def load(visitor_id):
+    """loads file using id and returns an instance of visitor"""
+    visitor_file = f"{MY_PATH}/visitor_{visitor_id}.json"
     with open(visitor_file, "r") as loaded_data_file:
         visitor_details = json.load(loaded_data_file)
 
     return Visitor(**visitor_details)
 
 
-if __name__ == "__main__":
-
-    samantha = Visitor(
-        "Samantha Smith",
-        12,
-        "12/4/2019",
-        "12:45",
-        "this is the umpteeth try",
-        "Maxwell",
-        1,
-    )
-    samantha.save()
-
-    mike = Visitor(
-        "Mike Smith", 32, "12/04/2018", "12:47", "Samantha's husband", "Maxwell", 2
-    )
-    mike.save()
-
-    samantha.age = 21
-    samantha.comments = "hi"
-    samantha.save()
-
-    mike = load(2)
-
-    mike.comments = "had a great time"
-    mike.age = 22
-    mike.save()
-
+def load_all():
+    visitor_files = glob.glob(f"{MY_PATH}/*.json")
+    visitors = []
+    for visitor in visitor_files:
+        with open(visitor, "r") as f:
+            visitor_obj = json.load(f)
+            visitors.append(visitor_obj)
+    visitor_array = json.dumps(visitors, indent=4)
+    return visitor_array

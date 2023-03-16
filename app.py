@@ -1,4 +1,3 @@
-import sys
 import requests
 from flask import Flask, request, render_template, redirect, url_for
 from part_1_data_layer import load, Visitor, load_all
